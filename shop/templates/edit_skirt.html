@@ -1,0 +1,18 @@
+<!-- templates/edit_skirt.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Skirt</title>
+</head>
+<body>
+  <h2>Edit Skirt Details 📝</h2>
+  <form action="" method="post">
+    <input type="text" name="name" value="{{ skirt.name }}" required>
+    <input type="text" name="description" value="{{ skirt.description }}" required>
+    <input type="number" name="price" value="{{ skirt.price }}" required>
+    <input type="text" name="image_url" value="{{ skirt.image_url }}" required>
+    <button type="submit">Update Skirt</button>
+  </form>
+</body>
+</html>

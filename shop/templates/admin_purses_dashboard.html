@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Purses Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style3.css') }}">
+</head>
+<body>
+  <h2>Manage Purses Collection 👜</h2>
+
+  <!-- Add New Purse Form -->
+  <form action="/add_purses" method="post">
+    <input type="text" name="name" placeholder="Purse Name" required>
+    <input type="text" name="description" placeholder="Description" required>
+    <input type="number" name="price" placeholder="Price (₹)" required>
+    <input type="text" name="image_url" placeholder="Image URL" required>
+    <button type="submit">Add</button>
+  </form>
+
+  <!-- Manage Existing Purses -->
+  <div class="collection-container">
+    {% for purse in purses %}
+      <div class="product-card">
+        <img src="{{ purse.image_url }}" alt="{{ purse.name }}">
+        <h3>{{ purse.name }}</h3>
+        <p>{{ purse.description }}</p>
+        <p><strong>₹{{ purse.price }}</strong></p>
+        <a href="/edit_purse/{{ purse.id }}"><button>Edit</button></a>
+        <a href="/delete_purses/{{ purse.id }}" onclick="return confirm('Are you sure?');"><button>Delete</button></a>
+      </div>
+    {% else %}
+      <p>No purses in database yet!</p>
+    {% endfor %}
+  </div>
+</body>
+</html>

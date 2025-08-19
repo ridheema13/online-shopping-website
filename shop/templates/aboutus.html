@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Shrivastra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <style>
+        /* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fdf7f5;
+    color: #333;
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #ff6f61, #ff3d6b);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 20px;
+}
+
+/* About Section */
+.about {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.about h2 {
+    color: #ff6f61;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.about p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Container for sections */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Products Section */
+.products {
+    background-color: #fff0f5;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.products h2 {
+    color: #ff3d6b;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    color: #ff6f61;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.product-card p {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Reviews Section */
+.reviews {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.reviews h2 {
+    color: #ff6f61;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.review-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+}
+
+.review-card p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.stars {
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+
+.review-card h4 {
+    color: #ff3d6b;
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #ff6f61;
+    color: white;
+    font-weight: bold;
+}
+
+     </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Shrivastra</h1>
+            <p>Your ultimate destination for trendy and stylish clothes!</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>
+                At Shrivastra, we bring you the latest fashion trends at affordable prices.
+                Our mission is to provide quality clothing that makes you feel confident and stylish.
+                Explore our wide range of products and join our fashion family today!
+            </p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container">
+            <h2>Our Collection</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://i.pinimg.com/originals/fc/5e/f3/fc5ef3b129c323612752ba605f649e7f.jpg" alt="Skirt">
+                    <h3>Floral Skirt</h3>
+                    <p>₹1200</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://assets.myntassets.com/h_200,w_200,c_fill,g_auto/h_1440,q_100,w_1080/v1/assets/images/productimage/2019/11/21/cfd98fb0-0f5a-46d5-8b57-303b5edbda9f1574288095152-1.jpg" alt="Dress">
+                    <h3>Summer Dress</h3>
+                    <p>₹1500</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://i.pinimg.com/originals/58/fc/d1/58fcd1c57d555952b8ed336abfc5d02e.jpg" alt="Jeans">
+                    <h3>Classic Jeans</h3>
+                    <p>₹1800</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://i.pinimg.com/originals/06/23/3e/06233ed94852c7e68c9e7e38747052c7.jpg" alt="Top">
+                    <h3>Casual Top</h3>
+                    <p>₹800</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="reviews">
+        <div class="container">
+            <h2>Customer Reviews</h2>
+            <div class="review-grid">
+                <div class="review-card">
+                    <p>"Amazing quality and fast delivery. Love my new dress!"</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <h4>- Ridheema T.</h4>
+                </div>
+                <div class="review-card">
+                    <p>"The skirts are super cute and perfect fit. Highly recommend!"</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <h4>- Priya S.</h4>
+                </div>
+                <div class="review-card">
+                    <p>"Best online shopping experience. Great customer support."</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <h4>- Anjali M.</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Shrivastra. All Rights Reserved.</p>
+    </footer>
+    <br>
+    <a href="admin_login2">are you an admin?</a>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Jeans</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <form method="POST" class="admin-form">
+        <h2>Edit Item</h2>
+        <input type="text" name="image_url" value="{{ item.image_url }}" required>
+        <input type="text" name="name" value="{{ item.name }}" required>
+        <input type="text" name="description" value="{{ item.description }}" required>
+        <input type="number" name="price" value="{{ item.price }}" required>
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>📦 Customer Orders</h2>
+
+{% for order in orders %}
+<div style="border:1px solid #ddd; margin:15px; padding:15px; border-radius:8px;">
+    <h3>Order #{{ order.id }} - {{ order.customer_name }}</h3>
+    <p><b>Email:</b> {{ order.email }}</p>
+    <p><b>Address:</b> {{ order.address }}</p>
+    <p><b>Payment:</b> {{ order.payment_method }}</p>
+    <p><b>Total:</b> ₹{{ order.total }}</p>
+    <p><b>Items:</b> {{ order.items }}</p>
+    <p><b>Status:</b> {{ order.status }}</p>
+
+    {% if order.status == "Cancelled" %}
+        <p style="color:red;"><b>Cancelled:</b> {{ order.cancel_reason }}</p>
+    {% else %}
+        <form action="{{ url_for('update_status', order_id=order.id) }}" method="POST">
+            <select name="status">
+                <option value="Confirmed" {% if order.status=="Confirmed" %}selected{% endif %}>Confirmed</option>
+                <option value="Shipped" {% if order.status=="Shipped" %}selected{% endif %}>Shipped</option>
+                <option value="Out for Delivery" {% if order.status=="Out for Delivery" %}selected{% endif %}>Out for Delivery</option>
+                <option value="Delivered" {% if order.status=="Delivered" %}selected{% endif %}>Delivered</option>
+            </select>
+            <button type="submit">Update</button>
+        </form>
+    {% endif %}
+</div>
+{% endfor %}
+
+</body>
+</html>

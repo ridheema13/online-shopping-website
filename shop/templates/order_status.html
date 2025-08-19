@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>/* General Page Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #ff6f61;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+/* Order Card */
+.items-list {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 25px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.items-list:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.items-list h3 {
+    color: #ff6f61;
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.items-list p {
+    margin: 6px 0;
+    font-size: 15px;
+}
+
+/* Inner Items List */
+.items-list > .items-list {
+    margin-top: 15px;
+}
+
+.items-list > .items-list div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.items-list > .items-list img {
+    border-radius: 8px;
+    object-fit: cover;
+    width: 60px;
+    height: 70px;
+    border: 2px solid #ff6f61;
+}
+
+/* Cancellation Form */
+.cancel-form {
+    margin-top: 15px;
+}
+
+.cancel-form textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-family: inherit;
+    font-size: 14px;
+    resize: none;
+}
+
+.cancel-form button {
+    margin-top: 10px;
+    background: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.cancel-form button:hover {
+    background: #e53935;
+    transform: scale(1.05);
+}
+
+/* Cancelled Badge */
+.cancelled {
+    display: inline-block;
+    background: #ff4d4d;
+    color: #fff;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .items-list > .items-list div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .items-list > .items-list img {
+        width: 80px;
+        height: 80px;
+    }
+} 
+</style>
+</head>
+
+<body>
+    <h2>📦 Your Orders</h2>
+{% for order in orders %}
+<div class="items-list">
+    <h3>Order #{{ order.id }}</h3>
+    <p><b>Total:</b> ₹{{ order.total }}</p>
+    <p><b>Status:</b> {{ order.status }}</p>
+
+    <!-- 🖼️ Show Items with Image -->
+    
+<!-- 🖼️ Show Items with Image -->
+<div class="items-list">
+    {% for id, item in order.parsed_items.items() %}
+    <div style="display:flex; align-items:center; gap:10px; margin:5px 0;">
+        <img src="{{ item.image_url }}" width="60" height="70" style="object-fit:cover; border-radius:5px;">
+        <span>{{ item.name }} (x{{ item.quantity }})</span>
+    </div>
+    {% endfor %}
+</div>
+
+    <!-- ❌ Cancellation Form -->
+    {% if order.status in ["Confirmed", "Shipped"] %}
+    <form class="cancel-form" action="{{ url_for('cancel_order', order_id=order.id) }}" method="POST" style="margin-top:10px;">
+        <textarea name="reason" placeholder="Reason for cancellation" required></textarea><br>
+        <button type="submit" style="background:#ff4d4d; color:white; border:none; padding:6px 12px; border-radius:6px;">
+            Cancel Order
+        </button>
+    </form>
+    {% elif order.status == "Cancelled" %}
+    <p class="cancelled"><b>Cancelled:</b> {{ order.cancel_reason }}</p>
+    {% endif %}
+</div>
+{% endfor %}
+</body>
+</html>

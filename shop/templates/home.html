@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shrivastra - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- 🌸 NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Shrivastra</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+         <li>  <a href="{{ url_for('cart') }}">Cart ({{ session['cart']|length if session.get('cart') else 0 }})</a></li>
+            <li><a href="{{ url_for('aboutus') }}">About Us</a></li>
+            <li><a href="{{ url_for('order_status') }}">My orders</a></li>
+            <li><a href="javascript:void(0);" onclick="openLogin()">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Placeholder -->
+    <div class="main-content">
+        <h1>Welcome to Shrivastra 💕</h1>
+        <p>Your one-stop shop for stylish fashion & accessories.</p>
+    </div>
+<!-- Category Section -->
+<h2 class="category-title">Shop by Category</h2>
+<div class="category-container">
+  <div class="category-card stagger1">
+    <a href="/skirt_collection"><img src="https://d3u67r7pp2lrq5.cloudfront.net/product_photos/85130026/file_6c8b816c24_original.jpg" alt="Skirt">
+    <p>Skirt</p></a>
+  </div>
+
+  <div class="category-card stagger2">
+    <a href="/jeans_collection"><img src="https://cdn.cliqueinc.com/posts/305133/celebrity-baggy-jeans-305133-1675409949809-main.700x0c.jpg" alt="Jeans">
+    <p>Jeans</p></a>
+  </div>
+
+  <div class="category-card stagger1">
+    <a href="/dresses_collection"><img src="https://cdn.shopify.com/s/files/1/1128/0920/products/A_Line_Off_the_Shoulder_Burgundy_Satin_Prom_Dresses_with_Pockets_High_Split_PW801_1024x1024.jpg?v=1555490830" alt="Dresses">
+    <p>Dresses</p></a>
+  </div>
+
+  <div class="category-card stagger2">
+    <a href="/indianwear_collection"><img src="https://cdn.shopify.com/s/files/1/0121/8376/5088/files/one_1024x1024.jpg?v=1577339535" alt="Indian Wear">
+    <p>Indian Wear</p></a>
+  </div>
+
+  <div class="category-card stagger2">
+    <a href="/shoes_collection"><img src="https://i.pinimg.com/originals/ad/c7/4a/adc74a2f1aace2f937a2ff9245357361.jpg" alt="Shoes">
+    <p>Shoes</p></a>
+  </div>
+
+  <div class="category-card stagger3">
+    <a href="/heels_collection"><img src="https://i.pinimg.com/originals/b5/6a/bd/b56abd0759fb1bfa06b4d6a8bca5377a.jpg" alt="Heels">
+    <p>Heels</p></a>
+  </div>
+
+  <div class="category-card stagger2">
+    <a href="/jacket_collection"><img src="https://i.pinimg.com/originals/dc/a0/88/dca088ba215aea53828ce9bbde3b9031.png" alt="Jacket">
+    <p>Jacket</p></a>
+  </div>
+
+  <div class="category-card stagger3">
+    <a href="/purses_collection"><img src="https://shaadiwish.com/blog/wp-content/uploads/2022/02/bridal-clutches-ideas.jpg" alt="Purses">
+    <p>Purses</p></a>
+  </div>
+</div>
+<!-- 🔐 LOGIN MODAL -->
+    <div id="login-modal" class="hidden">
+        <div class="modal-box">
+            <h2>Login</h2>
+            <form method="POST" action="{{ url_for('login') }}">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <button onclick="closeLogin()">Close</button>
+        </div>
+    </div>
+
+    <!-- ✅ LOGIN SUCCESS MODAL -->
+    {% if login_success %}
+    <div id="login-success-modal">
+        <div class="modal-box">
+            <h2 style="color: green;">✅ Login Successful</h2>
+            <p>Welcome, {{name }}👋</p>
+            <a href="{{ url_for('home') }}" class="btn">Back to Home</a>
+        </div>
+    </div><script>
+     setTimeout(() => {
+      const msg = document.querySelector('.login-success-message');
+      if (msg) msg.style.display = 'none';
+    }, 4000);
+</script>
+   
+    {% endif %}
+
+    <!-- 🔔 FLASH MESSAGES -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <script>
+            window.onload = () => {
+                openLogin(); // Auto-open on login failure
+            };
+        </script>
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- 💫 JS -->
+    <script>
+        function openLogin() {
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.body.classList.add('blur');
+        }
+
+        function closeLogin() {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.body.classList.remove('blur');
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!-- templates/admin_dressesdashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Dresses Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style3.css') }}">
+</head>
+<body>
+  <h2>Manage Dresses Collection 👗</h2>
+
+  <form action="/admin_dressesdashboard" method="post">
+    <input type="text" name="name" placeholder="Dress Name" required>
+    <input type="text" name="description" placeholder="Description" required>
+    <input type="number" name="price" placeholder="Price (₹)" required>
+    <input type="text" name="image_url" placeholder="Image URL" required>
+    <button type="submit">Add Dress</button>
+  </form>
+
+  <div class="collection-container">
+    {% for item in dresses %}
+      <div class="product-card">
+        <img src="{{ item.image_url }}" alt="{{ item.name }}">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <p><strong>₹{{ item.price }}</strong></p>
+        <a href="/edit_dress/{{ item.id }}"><button>Edit</button></a>
+        <a href="/delete_dress/{{ item.id }}" onclick="return confirm('Are you sure?');"><button>Delete</button></a>
+      </div>
+    {% else %}
+      <p>No dresses added yet!</p>
+    {% endfor %}
+  </div>
+</body>
+</html>

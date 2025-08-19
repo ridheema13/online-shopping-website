@@ -1,0 +1,71 @@
+/* static/admin.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #ffecd2, #fcb69f);
+  color: #333;
+}
+
+.admin-login-container, .admin-dashboard {
+  max-width: 500px;
+  margin: 5% auto;
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.admin-login-container h2,
+.admin-dashboard h1 {
+  text-align: center;
+  color: #d9486d;
+}
+
+.admin-login-container form label,
+.admin-login-container input,
+.admin-login-container button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.admin-login-container input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.admin-login-container button {
+  background-color: #d9486d;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.admin-login-container button:hover {
+  background-color: #b9375a;
+}
+
+.category-links {
+  display: grid;
+  gap: 15px;
+  padding: 20px;
+}
+
+.category-links a {
+  background-color: #f7a1c4;
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.category-links a:hover {
+  background-color: #d9486d;
+}

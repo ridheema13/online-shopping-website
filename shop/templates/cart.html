@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>cart</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='cart.css') }}">
+</head>
+<body>
+    <h2 style="text-align:center;">🛒 Your Shrivastra Cart</h2>
+
+{% if cart %}
+<div style="display: flex; flex-direction: column; gap: 20px;">
+  {% for id, item in cart.items() %}
+  <div style="display: flex; align-items: center; border: 1px solid #ddd; border-radius: 10px; padding: 15px; gap: 20px;">
+    
+    <!-- Image -->
+    <img src="{{ item.image_url }}" width="100" height="120" style="object-fit: cover; border-radius: 8px;">
+
+    <!-- Details -->
+    <div style="flex: 1;">
+      <h3>{{ item.name }}</h3>
+      <p>₹{{ item.price }}</p>
+      
+      <!-- Quantity Controls -->
+      <form action="{{ url_for('update_cart') }}" method="POST" style="display: flex; align-items: center; gap: 10px;">
+        <input type="hidden" name="id" value="{{ id }}">
+        <button type="submit" name="action" value="decrease">➖</button>
+        <span>{{ item.quantity }}</span>
+        <button type="submit" name="action" value="increase">➕</button>
+      </form>
+    </div>
+
+    <!-- Subtotal + Remove -->
+    <div style="text-align:right;">
+      <p><strong>Subtotal: ₹{{ item.price * item.quantity }}</strong></p>
+      <form action="{{ url_for('remove_from_cart') }}" method="POST">
+        <input type="hidden" name="id" value="{{ id }}">
+        <button type="submit" style="background-color: #ff4d4d; color: white; padding: 5px 10px; border: none; border-radius: 5px;">🗑️ Remove</button>
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Grand Total -->
+<h3 style="margin-top: 30px;">Total: ₹{{ total }}</h3>
+
+{% else %}
+  <p>Your cart is empty! 😢</p>
+{% endif %}
+<!-- 🧾 Contact Details Section -->
+<div class="contact-details">
+    <h3>Contact & Delivery Details</h3>
+    <form action="{{ url_for('confirm_order') }}" method="POST">
+        <div class="form-group">
+            <label>Full Name:</label>
+            <input type="text" name="full_name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Delivery Address:</label>
+            <textarea name="address" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Email (used for login):</label>
+            <input type="email" name="email" value="{{ session['email'] }}" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Payment Method:</label>
+            <select name="payment_method" required>
+                <option value="">-- Select --</option>
+                <option value="UPI">UPI</option>
+                <option value="Cash on Delivery">Cash on Delivery</option>
+            </select>
+        </div>
+            <input type="hidden" name="total" value="{{ total }}">
+
+        <button type="submit" class="confirm-btn">Confirm Order</button>
+    </form>
+</div>
+
+</body>
+</html>

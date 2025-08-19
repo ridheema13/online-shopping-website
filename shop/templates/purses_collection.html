@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purses Collection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Our Purses Collection</h1>
+        <nav>
+            <a href="/home">Home  ||  </a>
+            <a href="/cart">Cart</a>
+        </nav>
+    </header><br><br>
+
+    <main class="items-container">
+        {% for item in items %}
+        <div class="item-card">
+            <img src="{{ item.image_url }}" alt="{{ item.name }}">
+            <h2>{{ item.name }}</h2>
+            <p>{{ item.description }}</p>
+            <p><strong>₹{{ item.price }}</strong></p>
+            
+            <form method="POST" action="{{ url_for('add_to_cart') }}">
+                <input type="hidden" name="id" value="{{ item.id }}">
+                <input type="hidden" name="category" value="purses">
+                <input type="hidden" name="name" value="{{ item.name }}">
+                <input type="hidden" name="price" value="{{ item.price }}">
+                <input type="hidden" name="image_url" value="{{ item.image_url }}">
+                <button type="submit">Add to Cart</button>
+            </form>
+        </div>
+        {% endfor %}
+    </main>
+</body>
+</html>

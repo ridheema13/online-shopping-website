@@ -1,0 +1,32 @@
+<!-- templates/admin_jeansdashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Jeans Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style3.css') }}">
+</head>
+<body>
+  <h2>Admin - Add Jeans Item</h2>
+  <form method="POST" action="{{ url_for('admin_jeansdashboard') }}">
+    <input type="text" name="image_url" placeholder="Image URL" required><br>
+    <input type="text" name="name" placeholder="Product Name" required><br>
+    <textarea name="description" placeholder="Description" required></textarea><br>
+    <input type="number" name="price" placeholder="Price ₹" required><br>
+    <button type="submit">Add Item</button>
+  </form>
+
+  <h3>Jeans Items:</h3>
+  {% for item in jeans %}
+    <div class="jeans-card">
+      <img src="{{ item.image_url }}" alt="{{ item.name }}" width="150">
+      <h4>{{ item.name }}</h4>
+      <p>{{ item.description }}</p>
+      <p>₹{{ item.price }}</p>
+      <!-- You can later add edit/delete buttons here -->
+    </div>
+  {% else %}
+    <p>No items found.</p>
+  {% endfor %}
+</body>
+</html>
